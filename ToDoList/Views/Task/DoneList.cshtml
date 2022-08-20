@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ToDoList.Models.TaskModel>
+
+@{
+    ViewData["Title"] = "DoneList";
+}
+
+<h1>Done tasks list</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Created at
+            </th> 
+            <th>
+                Done at
+            </th> 
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td style="width:40%">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td style="width:20%">
+                @Html.DisplayFor(modelItem => item.CreateTime)
+            </td>
+            <td style="width:20%">
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td style="width:20%">
+                @Html.ActionLink("Details", "Details", new {  id=item.Id  }, new {@class = "btn btn-warning"}) 
+                @Html.ActionLink("Delete", "Delete", new {  id=item.Id  }, new {@class = "btn btn-danger"})
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a class="btn btn-dark" asp-action="Index">Back to To Do List</a>
+</div>
